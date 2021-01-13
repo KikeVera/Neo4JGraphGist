@@ -1,0 +1,167 @@
+= Videojuegos
+
+Enrique Vera Cueto: UO246711
+
+Luis Lomba Martinez: UO258352 
+
+Pablo Fernandez Díaz: UO270157 
+
+Adolfo Rodriguez Sanchez: UO271620
+
+El dominio consistirá en una base de datos
+
+
+
+image::https://raw.githubusercontent.com/UO246711/fotos/master/esquema.png[width=600]
+
+//hide
+[source,cypher]
+----
+CREATE (RedDeadRedemption:Videojuego{nombre:"Red Dead Redemption", PEGI:18, genero:"Mundo abierto"}), 
+(RedDeadRedemption2:Videojuego{nombre:"Red Dead Redemption 2", PEGI:18, genero:"Mundo abierto"}),
+(Fortnite:Videojuego{nombre:"Fortnite", PEGI:12, genero:"Battleroyale"}),
+(TotalWarRome:Videojuego{nombre:"Total War: Rome", PEGI:16, genero:"Estrategia"}),
+(TotalWarWarhammer:Videojuego{nombre:"Total War: Warhammer", PEGI:"16", genero:"Estrategia"}),
+(MidnightClub:Videojuego {nombre:"Midnight Club", PEGI:3, genero:"Conducción"}),
+(HaloWars2:Videojuego {nombre:"Halo Wars 2", PEGI:16, genero:"Estrategia"}),
+(Halo1:Videojuego {nombre:"Halo 1", PEGI:16, genero:"Shooter"}),
+(Halo2:Videojuego {nombre:"Halo 2", PEGI:16, genero:"Shooter"}),
+(Halo:Saga {nombre:"Halo"}),
+(TotalWar:Saga {nombre:"Total War"}),
+(RedDead:Saga {nombre:"Red Dead"}),
+(PC:Plataforma {nombre:"PC", internet:"Pago mensual/anual"}),
+(PlayStation:Plataforma {nombre:"PlayStation", internet:"Pago mensual/anual"}),
+(Xbox:Plataforma {nombre:"Xbox", internet:"Pago mensual/anual"}),
+(Activision:Distribuidoras {nombre:"Activision", fundacion:"1 de octubre de 1979"}),
+(SEGA:Distribuidoras {nombre:"SEGA", fundacion:"3 de junio de 1960"}),
+(EpicGames:Distribuidoras {nombre:"EpicGames", fundacion:"1991"}),
+(RockstarGames:Distribuidoras {nombre:"Rockstar Games", fundacion:"diciembre de 1998"}),
+(XboxGamesStudio:Distribuidoras {nombre:"XboxGamesStudio", fundacion:"marzo de 2000"}),
+(EpicGamesStudios: Desarrolladora{nombre: "Epic Games", genero_especializado: "General"}),
+(CreativeAssembly: Desarrolladora{nombre: "Creative Assemblie", genero_especializado: "Estrategia"}),
+(RockstarNorth: Desarrolladora{nombre: "Rockstar North", genero_especializado: "Mundo abierto"}),
+(RockstarSanDiego: Desarrolladora{nombre: "Rockstar San Diego", genero_especializado: "Mundo abierto"}),
+(BungieStudios: Desarrolladora{nombre: "Bungie Studios", genero_especializado: "Shooter"}),
+(RedDeadRedemption2)-[:PERTENECE_SAGA_DE {tipo:"Secuela"}]->(RedDead),
+(RedDeadRedemption)-[:PERTENECE_SAGA_DE {tipo:"Original"}]->(RedDead),
+(Halo1)-[:PERTENECE_SAGA_DE {tipo:"Original"}]->(Halo),
+(Halo2)-[:PERTENECE_SAGA_DE {tipo:"Secuela"}]->(Halo),
+(HaloWars2)-[:PERTENECE_SAGA_DE {tipo:"Spin off"}]->(Halo),
+(TotalWarWarhammer)-[:PERTENECE_SAGA_DE {}]->(TotalWar),
+(TotalWarRome)-[:PERTENECE_SAGA_DE {}]->(TotalWar),
+(RedDeadRedemption)-[:DISPONIBLE_PARA {}]->(PC),
+(RedDeadRedemption)-[:DISPONIBLE_PARA {}]->(PlayStation),
+(RedDeadRedemption)-[:DISPONIBLE_PARA {}]->(Xbox),
+(RedDeadRedemption2)-[:DISPONIBLE_PARA {}]->(PC),
+(RedDeadRedemption2)-[:DISPONIBLE_PARA {}]->(PlayStation),
+(RedDeadRedemption2)-[:DISPONIBLE_PARA {}]->(Xbox),
+(MidnightClub)-[:DISPONIBLE_PARA {}]->(PlayStation),
+(TotalWarRome)-[:DISPONIBLE_PARA {}]->(PC),
+(TotalWarWarhammer)-[:DISPONIBLE_PARA {tipo:"Precuela"}]->(PC),
+(Halo1)-[:DISPONIBLE_PARA {}]->(Xbox),
+(Halo2)-[:DISPONIBLE_PARA {}]->(Xbox),
+(HaloWars2)-[:DISPONIBLE_PARA {}]->(Xbox),
+(Fortnite)-[:DISPONIBLE_PARA {}]->(PC),
+(Fortnite)-[:DISPONIBLE_PARA {}]->(Xbox),
+(Fortnite)-[:DISPONIBLE_PARA {}]->(PlayStation),
+(EpicGamesStudios)-[:HA_TRABAJADO_CON {momento:"Actualidad"}]->(EpicGames),
+(RockstarNorth)-[:HA_TRABAJADO_CON {momento:"Actualidad"}]->(RockstarGames),
+(RockstarSanDiego)-[:HA_TRABAJADO_CON {momento:"Actualidad"}]->(RockstarGames),
+(RockstarSanDiego)-[:HA_TRABAJADO_CON {momento:"Pasado"}]->(SEGA),
+(CreativeAssembly)-[:HA_TRABAJADO_CON {momento:"Actualidad"}]->(SEGA),
+(CreativeAssembly)-[:HA_TRABAJADO_CON {momento:"Pasado"}]->(Activision),
+(BungieStudios)-[:HA_TRABAJADO_CON {momento:"Actualidad"}]->(XboxGamesStudio),
+(BungieStudios)-[:HA_TRABAJADO_CON {momento:"Pasado"}]->(Activision),
+(RedDeadRedemption)-[:DESARROLLADO_POR {}]->(RockstarSanDiego),
+(RedDeadRedemption2)-[:DESARROLLADO_POR {}]->(RockstarSanDiego),
+(Halo1)-[:DESARROLLADO_POR {}]->(BungieStudios),
+(Halo2)-[:DESARROLLADO_POR {}]->(BungieStudios),
+(HaloWars2)-[:DESARROLLADO_POR {}]->(CreativeAssembly),
+(Fortnite)-[:DESARROLLADO_POR {}]->(EpicGamesStudios),
+(MidnightClub)-[:DESARROLLADO_POR {}]->(RockstarNorth),
+(TotalWarRome)-[:DESARROLLADO_POR {}]->(CreativeAssembly),
+(TotalWarWarhammer)-[:DESARROLLADO_POR {}]->(CreativeAssembly),
+(RedDeadRedemption)-[:DISTRIBUIDO_POR{año:2010, ventas:14000000}]->(RockstarGames),
+(RedDeadRedemption2)-[:DISTRIBUIDO_POR{año:2018, ventas:29000000}]->(RockstarGames),
+(Fortnite)-[:DISTRIBUIDO_POR{año:2018}]->(EpicGames),
+(TotalWarRome)-[:DISTRIBUIDO_POR{año:2004, ventas:500000}]->(Activision),
+(TotalWarWarhammer)-[:DISTRIBUIDO_POR{año:2000, ventas:1000000}]->(SEGA),
+(HaloWars2)-[:DISTRIBUIDO_POR{año:2017, ventas:150000}]->(XboxGamesStudio),
+(Halo1)-[:DISTRIBUIDO_POR{año:2001, ventas:1000000}]->(XboxGamesStudio),
+(Halo2)-[:DISTRIBUIDO_POR{año:2000, ventas:2400000}]->(XboxGamesStudio),
+(MidnightClub)-[:DISTRIBUIDO_POR{año:2000, ventas:1900000}]->(RockstarGames)
+----
+
+
+
+== Instancia:
+
+//graph
+
+
+[source,cypher]
+----
+MATCH (n:Videojuego) WHERE n.PEGI=18 RETURN n
+----
+
+=== Juegos con PEGI igual 18:
+
+//graph_result
+
+[source,cypher]
+----
+MATCH (n:Videojuego)-[DISPONIBLE_PARA]->(p:Plataforma) WHERE p.nombre="PC" WITH DISTINCT n RETURN COUNT(n)
+----
+
+=== Juegos disponibles para PC:
+
+//graph_result
+
+
+[source,cypher]
+----
+MATCH result=(a:Videojuego)-[:DISTRIBUIDO_POR]->(d:Distribuidoras),(a)-[:DISPONIBLE_PARA]->(p:Plataforma),
+(a)-[:DISPONIBLE_PARA]->(b:Plataforma) WHERE p.nombre<>b.nombre RETURN result
+----
+
+=== Distribuidoras con juegos multiplataforma:
+
+//graph_result
+
+[source,cypher]
+----
+MATCH result=(v:Videojuego)-[:DESARROLLADO_POR]->(d:Desarrolladora),(v)-[r:DISTRIBUIDO_POR]->(:Distribuidoras)
+WHERE d.genero_especializado="Mundo abierto" AND r.año>=2000 RETURN result
+----
+
+=== Juegos posteriores al 2000 con distribuidoras de mundo abierto:
+
+//graph_result
+
+[source,cypher]
+----
+MATCH result=(a:Videojuego)-[:PERTENECE_SAGA_DE]->(Saga)<-[:PERTENECE_SAGA_DE]-(v:Videojuego),(a)-[:DESARROLLADO_POR]->(d:Desarrolladora),
+(v)-[:DESARROLLADO_POR]->(b:Desarrolladora), (a)-[:DISTRIBUIDO_POR]->(e:Distribuidoras),
+(v)-[:DISTRIBUIDO_POR]->(f:Distribuidoras) WHERE d.nombre<>b.nombre OR e.nombre<>f.nombre RETURN result
+----
+
+=== Juegos de la misma saga pero con diferente desarrolladora o distribuidora:
+
+//graph_result
+
+[source,cypher]
+----
+MATCH rutas=(w:Videojuego)-[*2]-(v:Videojuego) return w.nombre as Juego,v.nombre as Recomendado,count(DISTINCT rutas) as Ponderacion order by w.nombre,Ponderacion desc
+----
+
+=== Ponderacion de los juegos mas recomendados en base a otros:
+
+//table
+
+
+
+
+
+
+
+
