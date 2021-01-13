@@ -142,11 +142,12 @@ Se obtiene como resultado las distribuidoras con los juegos juegos multiplatafor
 [source,cypher]
 ----
 MATCH result=(v:Videojuego)-[:DESARROLLADO_POR]->(d:Desarrolladora),(v)-[r:DISTRIBUIDO_POR]->(:Distribuidoras)
-WHERE d.genero_especializado="Mundo abierto" AND r.año>=2000 RETURN result
+WHERE d.genero_especializado="Mundo abierto" AND r.año>=1995 AND v.genero<>"Mundo abierto" RETURN result
 ----
 
-=== Juegos posteriores al 2000 con distribuidoras de mundo abierto:
+=== Juegos posteriores al 1995 que no sean de mundo abierto con distribuidoras de mundo abierto:
 
+Obtener los videojuegos de una distribuidora que no se 
 
 //graph_result
 
