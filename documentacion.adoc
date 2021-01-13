@@ -120,6 +120,7 @@ MATCH (n:Videojuego)-[DISPONIBLE_PARA]->(p:Plataforma) WHERE p.nombre="PC" WITH 
 
 === Numero de juegos disponibles para PC:
 El objetivo es obtener la cantidad de juegos en pc.
+
 Se obtiene el numero de estos.
 
 //table
@@ -138,6 +139,7 @@ El objetivo de esto es  saber que distribuidoras tienen juegos para varias plata
 Se obtiene como resultado las distribuidoras con los juegos juegos multiplataformas que tienen
 
 //graph_result
+//table
 
 [source,cypher]
 ----
@@ -147,9 +149,10 @@ WHERE d.genero_especializado="Mundo abierto" AND r.año>=1995 AND v.genero<>"Mun
 
 === Juegos posteriores al 1995 que no sean de mundo abierto con distribuidoras de mundo abierto:
 
-Obtener los videojuegos de una distribuidora que no se 
+Obtener los videojuegos de una distribuidora que no sean del genero propio de esa distribuidora y posteriores a 1995
 
 //graph_result
+//table
 
 [source,cypher]
 ----
@@ -164,7 +167,7 @@ El objetivo de esta consulta es ver que saga ha cambiado de manos a lo largo de 
 Se obtiene que saga tiene videojuegos con estos cambios y los videojuegos asociados
 
 //graph_result
-
+//table
 [source,cypher]
 ----
 MATCH rutas=(w:Videojuego)-[*2]-(v:Videojuego) return w.nombre as Juego,v.nombre as Recomendado,count(DISTINCT rutas) as Ponderacion order by w.nombre,Ponderacion desc
