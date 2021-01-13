@@ -107,6 +107,9 @@ MATCH (n:Videojuego) WHERE n.PEGI=18 RETURN n
 ----
 
 === Juegos con PEGI igual 18:
+El objetivo es saber que juegos son para mayores de 18.
+
+Se obtienen los nodos de estos.
 
 //graph_result
 
@@ -116,6 +119,8 @@ MATCH (n:Videojuego)-[DISPONIBLE_PARA]->(p:Plataforma) WHERE p.nombre="PC" WITH 
 ----
 
 === Numero de juegos disponibles para PC:
+El objetivo es obtener la cantidad de juegos en pc.
+Se obtiene el numero de estos.
 
 //table
 
@@ -128,6 +133,10 @@ MATCH result=(a:Videojuego)-[:DISTRIBUIDO_POR]->(d:Distribuidoras),(a)-[:DISPONI
 
 === Distribuidoras con juegos multiplataforma:
 
+El objetivo de esto es  saber que distribuidoras tienen juegos para varias plataformas.
+
+Se obtiene como resultado las distribuidoras con los juegos juegos multiplataformas que tienen
+
 //graph_result
 
 [source,cypher]
@@ -137,6 +146,7 @@ WHERE d.genero_especializado="Mundo abierto" AND r.año>=2000 RETURN result
 ----
 
 === Juegos posteriores al 2000 con distribuidoras de mundo abierto:
+
 
 //graph_result
 
@@ -148,6 +158,9 @@ MATCH result=(a:Videojuego)-[:PERTENECE_SAGA_DE]->(Saga)<-[:PERTENECE_SAGA_DE]-(
 ----
 
 === Juegos de la misma saga pero con diferente desarrolladora o distribuidora:
+El objetivo de esta consulta es ver que saga ha cambiado de manos a lo largo de los años.
+
+Se obtiene que saga tiene videojuegos con estos cambios y los videojuegos asociados
 
 //graph_result
 
@@ -157,6 +170,12 @@ MATCH rutas=(w:Videojuego)-[*2]-(v:Videojuego) return w.nombre as Juego,v.nombre
 ----
 
 === Ponderacion de los juegos mas recomendados en base a otros:
+
+El objetivo de esta consulta es obtener que juegos serían recomendados en base al que estamos viendo.
+
+Se obtiene una tabla en el que se ve la pnderación de un juego respecto a otro.
+
+Cada vez que un juego este a dps saltos de otro (por consola, desarrolladora etc...) se suma a este valor
 
 //table
 
