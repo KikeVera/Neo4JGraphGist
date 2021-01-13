@@ -1,5 +1,7 @@
 = Videojuegos
 
+//console
+
 Enrique Vera Cueto: UO246711
 
 Luis Lomba Martinez: UO258352 
