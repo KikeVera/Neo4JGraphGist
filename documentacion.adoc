@@ -1,6 +1,6 @@
 = Videojuegos
 
-//console
+
 
 Enrique Vera Cueto: UO246711
 
@@ -115,9 +115,9 @@ MATCH (n:Videojuego) WHERE n.PEGI=18 RETURN n
 MATCH (n:Videojuego)-[DISPONIBLE_PARA]->(p:Plataforma) WHERE p.nombre="PC" WITH DISTINCT n RETURN COUNT(n)
 ----
 
-=== Juegos disponibles para PC:
+=== Numero de juegos disponibles para PC:
 
-//graph_result
+//table
 
 
 [source,cypher]
