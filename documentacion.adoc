@@ -165,7 +165,7 @@ Se obtiene ,los videojuegos resultantes con su distribuidora
 ----
 MATCH result=(a:Videojuego)-[:PERTENECE_SAGA_DE]->(Saga)<-[:PERTENECE_SAGA_DE]-(v:Videojuego),(a)-[:DESARROLLADO_POR]->(d:Desarrolladora),
 (v)-[:DESARROLLADO_POR]->(b:Desarrolladora), (a)-[:DISTRIBUIDO_POR]->(e:Distribuidoras),
-(v)-[:DISTRIBUIDO_POR]->(f:Distribuidoras) WHERE d.nombre<>b.nombre OR e.nombre<>f.nombre RETURN result,d,b,e,f
+(v)-[:DISTRIBUIDO_POR]->(f:Distribuidoras) WHERE d.nombre<>b.nombre OR e.nombre<>f.nombre RETURN result
 ----
 
 === Juegos de la misma saga pero con diferente desarrolladora o distribuidora:
