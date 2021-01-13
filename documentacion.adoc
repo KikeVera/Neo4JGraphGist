@@ -9,9 +9,13 @@ Luis Lomba Martinez: UO258352
 Pablo Fernandez Díaz: UO270157 
 
 Adolfo Rodriguez Sanchez: UO271620
+== Dominio
 
-El dominio consistirá en una base de datos
+La temática escogida por los miembros del grupo ha sido el sector de los videojuegos y las relaciones entre los actores de este.
 
+Dentro del dominio de la aplicación, hemos distinguido las siguientes entidades: videojuego, saga, plataforma, distribuidora y desarrolladora. Con esto conseguimos un grafo en el que identificamos dado un videojuego, todos los elementos anteriormente mencionados. También podemos observar relaciones entre distribuidoras y desarrolladoras y podemos ver cómo distintos juegos de la misma saga han pasado por las manos de varias desarrolladoras y distribuidoras.
+
+A continuación, se incluye un esquema conceptual del modelo:
 
 
 image::https://raw.githubusercontent.com/UO246711/fotos/master/esquema.png[width=600]
@@ -139,7 +143,7 @@ El objetivo de esto es  saber que distribuidoras tienen juegos para varias plata
 Se obtiene como resultado las distribuidoras con los juegos juegos multiplataformas que tienen
 
 //graph_result
-//table
+
 
 [source,cypher]
 ----
@@ -152,7 +156,7 @@ WHERE d.genero_especializado="Mundo abierto" AND r.año>=1995 AND v.genero<>"Mun
 Obtener los videojuegos de una distribuidora que no sean del genero propio de esa distribuidora y posteriores a 1995
 
 //graph_result
-//table
+
 
 [source,cypher]
 ----
@@ -167,7 +171,7 @@ El objetivo de esta consulta es ver que saga ha cambiado de manos a lo largo de 
 Se obtiene que saga tiene videojuegos con estos cambios y los videojuegos asociados
 
 //graph_result
-//table
+
 [source,cypher]
 ----
 MATCH rutas=(w:Videojuego)-[*2]-(v:Videojuego) return w.nombre as Juego,v.nombre as Recomendado,count(DISTINCT rutas) as Ponderacion order by w.nombre,Ponderacion desc
