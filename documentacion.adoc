@@ -154,7 +154,9 @@ WHERE d.genero_especializado="Mundo abierto" AND r.año>=1995 AND v.genero<>"Mun
 
 === Juegos posteriores al 1995 que no sean de mundo abierto con distribuidoras de mundo abierto:
 
-Obtener los videojuegos de una distribuidora que no sean del genero propio de esa distribuidora y posteriores a 1995
+El objetivo esobtener los videojuegos de una distribuidora que no sean del genero propio de esa distribuidora y posteriores a 1995
+
+Se obtiene ,los videojuegos resultantes con su distribuidora
 
 //graph_result
 
@@ -163,7 +165,7 @@ Obtener los videojuegos de una distribuidora que no sean del genero propio de es
 ----
 MATCH result=(a:Videojuego)-[:PERTENECE_SAGA_DE]->(Saga)<-[:PERTENECE_SAGA_DE]-(v:Videojuego),(a)-[:DESARROLLADO_POR]->(d:Desarrolladora),
 (v)-[:DESARROLLADO_POR]->(b:Desarrolladora), (a)-[:DISTRIBUIDO_POR]->(e:Distribuidoras),
-(v)-[:DISTRIBUIDO_POR]->(f:Distribuidoras) WHERE d.nombre<>b.nombre OR e.nombre<>f.nombre RETURN result
+(v)-[:DISTRIBUIDO_POR]->(f:Distribuidoras) WHERE d.nombre<>b.nombre OR e.nombre<>f.nombre RETURN result,d,b,e,f
 ----
 
 === Juegos de la misma saga pero con diferente desarrolladora o distribuidora:
